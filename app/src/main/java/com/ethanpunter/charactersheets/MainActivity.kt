@@ -4,14 +4,12 @@ import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.LayoutInflater
-import android.view.ViewGroup
 import android.view.Window
 import com.ethanpunter.charactersheets.databinding.ActivityMainBinding
-import com.ethanpunter.charactersheets.stats.PrimaryStat
+import com.ethanpunter.charactersheets.viewmodels.MainMenuViewModel
+import com.ethanpunter.charactersheets.views.MainMenuFragment
 
 class MainActivity : AppCompatActivity() {
-
-    var res = 1
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -19,16 +17,13 @@ class MainActivity : AppCompatActivity() {
 
         val inflater: LayoutInflater =
             applicationContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
-
         val binding = ActivityMainBinding.inflate(inflater)
-        val stat = PrimaryStat("Strength", 21)
-        binding.stat1 = stat
-        binding.statBlockOne.root.setOnClickListener {
-            binding.statBlockOne.root.layoutParams = ViewGroup.LayoutParams(100 * res, 100 * res)
-            res += 1
-            if (res > 10) {
-                res = 1
-            }
+
+        val menuViewModel = MainMenuViewModel()
+        val fragment = MainMenuFragment(menuViewModel, applicationContext)
+        supportFragmentManager.beginTransaction().apply {
+            replace(R.id.fragment_host, fragment)
+            commit()
         }
 
         setContentView(binding.root)

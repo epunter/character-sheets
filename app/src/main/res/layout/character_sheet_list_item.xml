@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout>
+    <data>
+        <variable
+            name="character"
+            type="com.ethanpunter.charactersheets.data.Sheet" />
+    </data>
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/transparent">
+
+        <TextView
+            android:id="@+id/listItemName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginStart="8dp"
+            android:fontFamily="@font/draconis"
+            android:letterSpacing="0.07"
+            android:maxLines="1"
+            android:textColor="@color/lightest"
+            android:textSize="48dp"
+            android:text="@{character.name}"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Anastasia" />
+
+        <TextView
+            android:id="@+id/listItemStats"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_marginStart="32dp"
+            android:gravity="center"
+            android:maxLines="1"
+            android:textColor="@color/lightest"
+            android:textSize="16sp"
+            android:text="@{@string/character_stats(character.level, character.type)}"
+            app:layout_constraintTop_toBottomOf="@id/listItemName"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:text="- Level 20 Cleric" />
+
+        <ImageButton
+            android:id="@+id/btnAddCharSheet"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_marginEnd="8dp"
+            android:backgroundTint="@color/orange"
+            android:contentDescription="@string/character_sheets_desc"
+            android:src="@drawable/ic_delete"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/grey"
+            android:layout_marginTop="8dp"
+            app:layout_constraintTop_toBottomOf="@id/listItemStats" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

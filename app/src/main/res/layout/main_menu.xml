@@ -1,6 +1,61 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<layout>
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/bg_gradient">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <TextView
+            android:id="@+id/charSheetTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_marginStart="8dp"
+            android:fontFamily="@font/draconis"
+            android:gravity="center"
+            android:letterSpacing="0.07"
+            android:maxLines="1"
+            android:text="@string/character_sheets_title"
+            android:textColor="@color/lightest"
+            android:textSize="64sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="@id/headerBar"/>
+
+        <ImageButton
+            android:id="@+id/btnAddCharSheet"
+            android:layout_width="64dp"
+            android:layout_height="56dp"
+            android:layout_marginEnd="16dp"
+            android:backgroundTint="@color/orange"
+            android:contentDescription="@string/character_sheets_desc"
+            android:src="@drawable/ic_add"
+            app:layout_constraintBottom_toBottomOf="@id/charSheetTitle"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/charSheetTitle" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/headerBar"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.10" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/grey"
+            app:layout_constraintTop_toTopOf="@id/headerBar"
+            app:layout_constraintBottom_toBottomOf="@id/headerBar"/>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/charSheetList"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/headerBar" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
