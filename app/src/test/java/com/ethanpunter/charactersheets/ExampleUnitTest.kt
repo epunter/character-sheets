@@ -1,4 +1,4 @@
-package com.ethanpunter.charactersheet
+package com.ethanpunter.charactersheets
 
 import org.junit.Test
 
