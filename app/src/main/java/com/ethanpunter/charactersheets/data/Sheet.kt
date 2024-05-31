@@ -19,8 +19,6 @@ interface Sheet {
     fun getType(): String
 
     fun getLevel(): Int
-
-    fun getTitle(): String
 //
 //    fun getBackground(): String
 //

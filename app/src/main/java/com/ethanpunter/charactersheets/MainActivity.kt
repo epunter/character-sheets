@@ -20,7 +20,7 @@ class MainActivity : AppCompatActivity() {
         val binding = ActivityMainBinding.inflate(inflater)
 
         val menuViewModel = MainMenuViewModel()
-        val fragment = MainMenuFragment(menuViewModel, applicationContext)
+        val fragment = MainMenuFragment.newInstance(applicationContext, menuViewModel)
         supportFragmentManager.beginTransaction().apply {
             replace(R.id.fragment_host, fragment)
             commit()

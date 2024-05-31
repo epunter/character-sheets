@@ -11,10 +11,10 @@ import com.ethanpunter.charactersheets.databinding.MainMenuBinding
 import com.ethanpunter.charactersheets.viewmodels.MainMenuViewModel
 import com.ethanpunter.charactersheets.views.adapters.CharacterListAdapter
 
-class MainMenuFragment(
-    private val mainMenuViewModel: MainMenuViewModel,
-    private val context: Context
-) : Fragment() {
+class MainMenuFragment : Fragment() {
+
+    private lateinit var context: Context
+    private lateinit var mainMenuViewModel: MainMenuViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -25,6 +25,15 @@ class MainMenuFragment(
         binding.charSheetList.layoutManager = LinearLayoutManager(context)
         binding.charSheetList.adapter = CharacterListAdapter(mainMenuViewModel, context)
         return binding.root
+    }
+
+    companion object {
+        fun newInstance(context: Context, mainMenuViewModel: MainMenuViewModel): MainMenuFragment {
+            val instance = MainMenuFragment()
+            instance.context = context
+            instance.mainMenuViewModel = mainMenuViewModel
+            return instance
+        }
     }
 
 }
