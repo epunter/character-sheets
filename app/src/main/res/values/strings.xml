@@ -1,3 +1,4 @@
 <resources>
-    <string name="app_name">character-sheets</string>
+    <string name="app_name">charactersheets</string>
+    <string name="int_as_string">%d</string>
 </resources>
