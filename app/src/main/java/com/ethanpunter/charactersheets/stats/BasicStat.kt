@@ -1,5 +1,6 @@
 package com.ethanpunter.charactersheets.stats
 
+import android.graphics.Point
 import android.view.LayoutInflater
 import android.view.View
 import androidx.databinding.Bindable
@@ -7,7 +8,7 @@ import com.ethanpunter.charactersheets.BR
 import com.ethanpunter.charactersheets.databinding.AbilityScoreBinding
 
 abstract class BasicStat(
-    override val position: Int,
+    override val position: Point,
     statName: String,
     statValue: String,
     statAdditionalValue: String?

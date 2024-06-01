@@ -2,27 +2,23 @@ package com.ethanpunter.charactersheets.data
 
 import android.view.LayoutInflater
 import android.view.View
+import com.ethanpunter.charactersheets.R
 import com.ethanpunter.charactersheets.stats.AbilityScore
 import com.ethanpunter.charactersheets.stats.BasicText
+import com.ethanpunter.charactersheets.stats.DecoratedStat
+import com.ethanpunter.charactersheets.stats.Stat
 
-data class Character(
-    val name: String,
-    val type: String,
-    val level: Int,
-    val race: String,
-    val background: String,
-    val abilityScores: List<AbilityScore>
+class Character(
+    val name: BasicText,
+    val profession: BasicText,
+    val level: BasicText,
+    vararg val stats: Stat
 ) {
-
-    fun getAllAttributes(inflater: LayoutInflater): List<View> {
-        return listOf(
-            BasicText(0, "Character Name", name),
-            BasicText(1, "Class", type),
-            BasicText(2, "Level", level.toString()),
-            BasicText(3, "Race", race),
-            BasicText(4, "Background", background)
-        ).map { it.getView(inflater) }
+    fun getAllAttributes(): List<Stat> {
+        val baseStats = listOf(name, profession, level)
+        return (baseStats + stats).sortedWith(compareBy({ it.position.y }, { it.position.x }))
     }
+
 //    fun getSavingThrows()
 //
 //    fun getSkillProficiencies()
@@ -32,9 +28,6 @@ data class Character(
 //    fun getMaxHp(): Int
 //
 //    fun getCurrentHp(): Int
-//
-//
-//    fun getArmourClass(): Int
 //
 //    fun getInitiative(): Int
 //

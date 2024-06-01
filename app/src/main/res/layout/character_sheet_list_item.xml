@@ -24,7 +24,7 @@
             android:maxLines="1"
             android:textColor="@color/lightest"
             android:textSize="48sp"
-            android:text="@{character.name}"
+            android:text="@{character.name.textValue}"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:text="Anastasia" />
@@ -38,7 +38,7 @@
             android:maxLines="1"
             android:textColor="@color/lightest"
             android:textSize="16sp"
-            android:text="@{@string/character_stats(character.level, character.type)}"
+            android:text="@{@string/character_stats(character.level.textValue, character.profession.textValue)}"
             app:layout_constraintTop_toBottomOf="@id/listItemName"
             app:layout_constraintStart_toStartOf="parent"
             tools:text="- Level 20 Cleric" />

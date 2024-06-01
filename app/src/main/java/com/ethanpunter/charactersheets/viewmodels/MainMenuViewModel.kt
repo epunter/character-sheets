@@ -1,11 +1,15 @@
 package com.ethanpunter.charactersheets.viewmodels
 
+import android.graphics.Point
 import androidx.databinding.BaseObservable
 import androidx.databinding.Bindable
 import com.ethanpunter.charactersheets.data.Character
 import com.ethanpunter.charactersheets.BR
+import com.ethanpunter.charactersheets.R
 import com.ethanpunter.charactersheets.stats.AbilityScore
 import com.ethanpunter.charactersheets.stats.BasicStat
+import com.ethanpunter.charactersheets.stats.BasicText
+import com.ethanpunter.charactersheets.stats.DecoratedStat
 import com.ethanpunter.charactersheets.views.FragmentManager
 
 class MainMenuViewModel(private val fragmentManager: FragmentManager) : BaseObservable() {
@@ -20,15 +24,20 @@ class MainMenuViewModel(private val fragmentManager: FragmentManager) : BaseObse
     init {
         addCharacter(
             Character(
-                "Anastasia", "Cleric", 18, "Human", "Acolyte",
-                listOf(
-                    AbilityScore(0, "Strength", 20, true),
-                    AbilityScore(1, "Dexterity", 12, true),
-                    AbilityScore(2, "Constitution", 10, true),
-                    AbilityScore(0, "Intelligence", 20, true),
-                    AbilityScore(1, "Wisdom", 12, true),
-                    AbilityScore(2, "Charisma", 10, true)
-                )
+                BasicText(Point(0, 0), "Character Name", "Anastasia"),
+                BasicText(Point(0, 1), "Class", "Cleric"),
+                BasicText(Point(1, 1), "Level", "18"),
+                BasicText(Point(0, 2), "Race", "Human"),
+                BasicText(Point(1, 2), "Background", "Acolyte"),
+                DecoratedStat(Point(0, 3), "Armour Class", "20", R.drawable.shield),
+                DecoratedStat(Point(0, 3), "Armour Class", "20", R.drawable.shield),
+                DecoratedStat(Point(0, 3), "Armour Class", "20", R.drawable.shield),
+                AbilityScore(Point(0, 4), "Strength", "20", true),
+                AbilityScore(Point(1, 4), "Dexterity", "12", true),
+                AbilityScore(Point(2, 4), "Constitution", "10", true),
+                AbilityScore(Point(0, 5), "Intelligence", "20", false),
+                AbilityScore(Point(1, 5), "Wisdom", "12", true),
+                AbilityScore(Point(2, 5), "Charisma", "10", true)
             )
         )
 //        addCharacter(

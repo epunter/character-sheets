@@ -12,10 +12,8 @@ import androidx.fragment.app.Fragment
 import com.ethanpunter.charactersheets.R
 import com.ethanpunter.charactersheets.data.Character
 import com.ethanpunter.charactersheets.databinding.CharacterSheetBinding
+import com.ethanpunter.charactersheets.stats.BasicText
 import kotlin.math.ceil
-
-const val TEXT_COL_COUNT = 2
-const val ABILITY_COL_COUNT = 3
 
 class CharacterSheetFragment : Fragment() {
 
@@ -28,20 +26,30 @@ class CharacterSheetFragment : Fragment() {
     ): View {
         val binding = CharacterSheetBinding.inflate(inflater)
 
-        val attributesList = character.getAllAttributes(inflater)
-        attachHeader(attributesList[0], binding)
-        attachViews(
-            attributesList.subList(1, attributesList.size),
-            binding,
-            TEXT_COL_COUNT,
-            height = LinearLayout.LayoutParams.WRAP_CONTENT
-        )
-        attachViews(
-            views = character.abilityScores.map { it.getView(inflater) },
-            binding = binding,
-            colCount = ABILITY_COL_COUNT,
-            height = ((Resources.getSystem().displayMetrics.widthPixels / ABILITY_COL_COUNT) * 1.25).toInt()
-        )
+        var attributesList = character.getAllAttributes()
+
+        if (attributesList[0] is BasicText) {
+            attachHeader(attributesList[0].getView(inflater), binding)
+            attributesList = attributesList.subList(1, attributesList.size)
+        }
+
+        var curRow = attributesList[0].position.y
+        val curRowViews = ArrayList<View>()
+        for (i in attributesList.indices) {
+            val curAttribute = attributesList[i]
+            if (curAttribute.position.y != curRow) {
+                insertRow(
+                    curRowViews, binding, height = curAttribute.customHeight
+                        ?: (Resources.getSystem().displayMetrics.widthPixels / curRowViews.size)
+                )
+                curRowViews.clear()
+                curRowViews.add(curAttribute.getView(inflater))
+                curRow = curAttribute.position.y
+            } else {
+                curRowViews.add(curAttribute.getView(inflater))
+            }
+        }
+        insertRow(curRowViews, binding)
 
         return binding.root
     }
@@ -65,34 +73,20 @@ class CharacterSheetFragment : Fragment() {
 
     }
 
-    private fun attachViews(
+    private fun insertRow(
         views: List<View>,
         binding: CharacterSheetBinding,
-        colCount: Int,
-        width: Int = Resources.getSystem().displayMetrics.widthPixels / colCount,
-        height: Int = (Resources.getSystem().displayMetrics.widthPixels / colCount)
+        width: Int = Resources.getSystem().displayMetrics.widthPixels / views.size,
+        height: Int = Resources.getSystem().displayMetrics.widthPixels / views.size
     ) {
-        val rows = ceil(views.size / (colCount.toFloat())).toInt()
-
-        val params = LinearLayout.LayoutParams(
-            width,
-            height
-        )
-
-        for (i in 0 until rows) {
-            val rowView = LinearLayout(context)
-            rowView.orientation = LinearLayout.HORIZONTAL
-            rowView.gravity = Gravity.CENTER
-            for (j in i * colCount until (i * colCount) + colCount) {
-                try {
-                    val view = views[j]
-                    view.layoutParams = params
-                    rowView.addView(view)
-                } catch (e: IndexOutOfBoundsException) {
-                    // do nothing
-                }
-            }
-            binding.characterSheetContainer.addView(rowView)
+        val params = LinearLayout.LayoutParams(width, height)
+        val rowView = LinearLayout(context)
+        rowView.orientation = LinearLayout.HORIZONTAL
+        rowView.gravity = Gravity.CENTER
+        for (view in views) {
+            view.layoutParams = params
+            rowView.addView(view)
         }
+        binding.characterSheetContainer.addView(rowView)
     }
 }

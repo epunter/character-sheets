@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <variable
+            name="stat"
+            type="com.ethanpunter.charactersheets.stats.BasicStat" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/statModifierContainer"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@drawable/shield"
+            android:minWidth="100dp"
+            android:minHeight="100dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/titleGuide"
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                app:layout_constraintGuide_percent="0.20" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/titleBottomGuide"
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                app:layout_constraintGuide_percent="0.35" />
+
+            <TextView
+                tools:text="Strength"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:autoSizeMaxTextSize="200sp"
+                android:autoSizeMinTextSize="1sp"
+                android:autoSizeStepGranularity="1sp"
+                android:autoSizeTextType="uniform"
+                android:gravity="center_horizontal"
+                android:maxLines="1"
+                android:text="@{stat.statName}"
+                app:layout_constraintTop_toBottomOf="@id/titleGuide"
+                app:layout_constraintLeft_toLeftOf="@id/statModifierContainer"
+                app:layout_constraintRight_toRightOf="@id/statModifierContainer"
+                app:layout_constraintBottom_toBottomOf="@id/titleBottomGuide"/>
+
+            <TextView
+                tools:text="+3"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:autoSizeMaxTextSize="100sp"
+                android:autoSizeMinTextSize="10sp"
+                android:autoSizeStepGranularity="50sp"
+                android:autoSizeTextType="uniform"
+                android:gravity="center"
+                android:maxLines="1"
+                android:text="@{stat.statValue}"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/titleBottomGuide" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>
