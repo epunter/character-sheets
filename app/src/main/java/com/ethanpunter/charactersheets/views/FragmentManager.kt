@@ -2,7 +2,7 @@ package com.ethanpunter.charactersheets.views
 
 import androidx.fragment.app.Fragment
 import com.ethanpunter.charactersheets.R
-import com.ethanpunter.charactersheets.data.Sheet
+import com.ethanpunter.charactersheets.data.Character
 import com.ethanpunter.charactersheets.viewmodels.MainMenuViewModel
 
 class FragmentManager(
@@ -32,10 +32,10 @@ class FragmentManager(
         currentFragment = mainMenuFragment
     }
 
-    fun goToCharacterSheet(sheet: Sheet) {
+    fun goToCharacterSheet(character: Character) {
         currentFragment.let { backstack.add(it) }
 
-        characterSheetFragment.character = sheet
+        characterSheetFragment.character = character
         fragmentManager.beginTransaction().apply {
             replace(R.id.fragment_host, characterSheetFragment)
             commit()

@@ -1,6 +1,10 @@
 package com.ethanpunter.charactersheets.data
 
-interface Sheet {
+data class Character(
+    val name: String,
+    val type: String,
+    val level: Int
+) {
 //
 //    fun getPrimaryStats() : List<PrimaryStat>
 //
@@ -13,12 +17,6 @@ interface Sheet {
 //    fun getMaxHp(): Int
 //
 //    fun getCurrentHp(): Int
-
-    fun getName(): String
-
-    fun getType(): String
-
-    fun getLevel(): Int
 //
 //    fun getBackground(): String
 //

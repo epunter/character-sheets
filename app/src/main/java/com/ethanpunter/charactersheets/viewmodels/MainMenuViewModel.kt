@@ -2,59 +2,32 @@ package com.ethanpunter.charactersheets.viewmodels
 
 import androidx.databinding.BaseObservable
 import androidx.databinding.Bindable
-import com.ethanpunter.charactersheets.data.Sheet
+import com.ethanpunter.charactersheets.data.Character
 import com.ethanpunter.charactersheets.BR
 import com.ethanpunter.charactersheets.views.FragmentManager
 
 class MainMenuViewModel(private val fragmentManager: FragmentManager) : BaseObservable() {
 
     @Bindable
-    var characters = ArrayList<Sheet>()
+    var characters = ArrayList<Character>()
         set(value) {
             field = value
             notifyPropertyChanged(BR.characters)
         }
 
     init {
-        addCharacter(object : Sheet {
-            override fun getName(): String = "Anastasia"
-
-            override fun getType(): String = "Cleric"
-
-            override fun getLevel(): Int = 18
-        })
-
-        addCharacter(object : Sheet {
-            override fun getName(): String = "Jahangir"
-
-            override fun getType(): String = "Fighter"
-
-            override fun getLevel(): Int = 5
-        })
-
-        addCharacter(object : Sheet {
-            override fun getName(): String = "Texilli"
-
-            override fun getType(): String = "Druid"
-
-            override fun getLevel(): Int = 10
-        })
-
-        addCharacter(object : Sheet {
-            override fun getName(): String = "Eagle"
-
-            override fun getType(): String = "Barbarian"
-
-            override fun getLevel(): Int = 20
-        })
+        addCharacter(Character("Anastasia", "Cleric", 18))
+        addCharacter(Character("Jahangir", "Fighter", 5))
+        addCharacter(Character("Texilli", "Druid", 100))
+        addCharacter(Character("Eagle", "Barbarian", 20))
     }
 
-    fun openCharacter(sheet: Sheet) {
-        fragmentManager.goToCharacterSheet(sheet)
+    fun openCharacter(character: Character) {
+        fragmentManager.goToCharacterSheet(character)
     }
 
-    private fun addCharacter(sheet: Sheet) {
-        characters.add(sheet)
+    private fun addCharacter(character: Character) {
+        characters.add(character)
         notifyPropertyChanged(BR.characters)
     }
 

@@ -6,7 +6,7 @@
     <data>
         <variable
             name="character"
-            type="com.ethanpunter.charactersheets.data.Sheet" />
+            type="com.ethanpunter.charactersheets.data.Character" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

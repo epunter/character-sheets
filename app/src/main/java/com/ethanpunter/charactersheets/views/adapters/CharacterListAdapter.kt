@@ -10,7 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.ethanpunter.charactersheets.viewmodels.MainMenuViewModel
 import com.ethanpunter.charactersheets.BR
-import com.ethanpunter.charactersheets.data.Sheet
+import com.ethanpunter.charactersheets.data.Character
 import com.ethanpunter.charactersheets.databinding.CharacterSheetListItemBinding
 import java.util.*
 
@@ -54,7 +54,7 @@ class CharacterListAdapter(private val mainMenuViewModel: MainMenuViewModel, con
     ) :
         ViewHolder(itemBinding.root) {
 
-        fun bind(character: Sheet) {
+        fun bind(character: Character) {
             itemBinding.character = character
             itemBinding.root.setOnClickListener { mainMenuViewModel.openCharacter(character) }
             itemBinding.executePendingBindings()
