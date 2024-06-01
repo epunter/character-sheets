@@ -14,7 +14,7 @@ import com.ethanpunter.charactersheets.data.Sheet
 import com.ethanpunter.charactersheets.databinding.CharacterSheetListItemBinding
 import java.util.*
 
-class CharacterListAdapter(mainMenuViewModel: MainMenuViewModel, context: Context) :
+class CharacterListAdapter(private val mainMenuViewModel: MainMenuViewModel, context: Context) :
     RecyclerView.Adapter<CharacterListAdapter.CharacterViewHolder>() {
 
     private val inflater: LayoutInflater
@@ -34,7 +34,7 @@ class CharacterListAdapter(mainMenuViewModel: MainMenuViewModel, context: Contex
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CharacterViewHolder {
-        return CharacterViewHolder.from(parent)
+        return CharacterViewHolder.from(parent, mainMenuViewModel)
     }
 
     override fun getItemCount(): Int {
@@ -48,20 +48,24 @@ class CharacterListAdapter(mainMenuViewModel: MainMenuViewModel, context: Contex
     }
 
 
-    class CharacterViewHolder(private val itemBinding: CharacterSheetListItemBinding) :
+    class CharacterViewHolder(
+        private val itemBinding: CharacterSheetListItemBinding,
+        private val mainMenuViewModel: MainMenuViewModel
+    ) :
         ViewHolder(itemBinding.root) {
 
-            fun bind(character: Sheet) {
-                itemBinding.character = character
-                itemBinding.executePendingBindings()
-            }
+        fun bind(character: Sheet) {
+            itemBinding.character = character
+            itemBinding.root.setOnClickListener { mainMenuViewModel.openCharacter(character) }
+            itemBinding.executePendingBindings()
+        }
 
         companion object {
-            fun from(parent: ViewGroup): CharacterViewHolder {
+            fun from(parent: ViewGroup, mainMenuViewModel: MainMenuViewModel): CharacterViewHolder {
                 val layoutInflater = LayoutInflater.from(parent.context)
                 val binding = CharacterSheetListItemBinding.inflate(layoutInflater, parent, false)
 
-                return CharacterViewHolder(binding)
+                return CharacterViewHolder(binding, mainMenuViewModel)
             }
         }
 

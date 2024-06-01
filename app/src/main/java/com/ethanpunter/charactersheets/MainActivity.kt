@@ -5,27 +5,33 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.Window
+import androidx.activity.OnBackPressedCallback
 import com.ethanpunter.charactersheets.databinding.ActivityMainBinding
-import com.ethanpunter.charactersheets.viewmodels.MainMenuViewModel
-import com.ethanpunter.charactersheets.views.MainMenuFragment
+import com.ethanpunter.charactersheets.views.FragmentManager
 
 class MainActivity : AppCompatActivity() {
 
+    private lateinit var fragmentManager: FragmentManager
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        fragmentManager =
+            FragmentManager(supportFragmentManager, applicationContext)
         supportRequestWindowFeature(Window.FEATURE_NO_TITLE)
 
         val inflater: LayoutInflater =
             applicationContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
         val binding = ActivityMainBinding.inflate(inflater)
 
-        val menuViewModel = MainMenuViewModel()
-        val fragment = MainMenuFragment.newInstance(applicationContext, menuViewModel)
-        supportFragmentManager.beginTransaction().apply {
-            replace(R.id.fragment_host, fragment)
-            commit()
-        }
+        fragmentManager.goToCharacterList()
 
         setContentView(binding.root)
+
+        onBackPressedDispatcher.addCallback(object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                fragmentManager.goBack()
+            }
+
+        })
     }
 }

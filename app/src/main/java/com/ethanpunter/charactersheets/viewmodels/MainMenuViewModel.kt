@@ -4,8 +4,9 @@ import androidx.databinding.BaseObservable
 import androidx.databinding.Bindable
 import com.ethanpunter.charactersheets.data.Sheet
 import com.ethanpunter.charactersheets.BR
+import com.ethanpunter.charactersheets.views.FragmentManager
 
-class MainMenuViewModel : BaseObservable() {
+class MainMenuViewModel(private val fragmentManager: FragmentManager) : BaseObservable() {
 
     @Bindable
     var characters = ArrayList<Sheet>()
@@ -46,6 +47,10 @@ class MainMenuViewModel : BaseObservable() {
 
             override fun getLevel(): Int = 20
         })
+    }
+
+    fun openCharacter(sheet: Sheet) {
+        fragmentManager.goToCharacterSheet(sheet)
     }
 
     private fun addCharacter(sheet: Sheet) {
