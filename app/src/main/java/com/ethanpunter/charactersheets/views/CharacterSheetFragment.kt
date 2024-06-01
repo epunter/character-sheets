@@ -10,7 +10,7 @@ import com.ethanpunter.charactersheets.databinding.CharacterSheetBinding
 
 class CharacterSheetFragment : Fragment() {
 
-    private lateinit var character: Sheet
+    lateinit var character: Sheet
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -21,13 +21,4 @@ class CharacterSheetFragment : Fragment() {
         binding.character = character
         return binding.root
     }
-
-    companion object {
-        fun newInstance(sheet: Sheet): CharacterSheetFragment {
-            val fragment = CharacterSheetFragment()
-            fragment.character = sheet
-            return fragment
-        }
-    }
-
 }

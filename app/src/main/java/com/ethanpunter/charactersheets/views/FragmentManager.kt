@@ -1,42 +1,47 @@
 package com.ethanpunter.charactersheets.views
 
-import android.content.Context
 import androidx.fragment.app.Fragment
 import com.ethanpunter.charactersheets.R
 import com.ethanpunter.charactersheets.data.Sheet
 import com.ethanpunter.charactersheets.viewmodels.MainMenuViewModel
 
 class FragmentManager(
-    private val fragmentManager: androidx.fragment.app.FragmentManager,
-    private val context: Context
+    private val fragmentManager: androidx.fragment.app.FragmentManager
 ) {
 
     private val backstack: ArrayDeque<Fragment> = ArrayDeque()
 
-    private var currentFragment: Fragment? = null
+    private val characterSheetFragment = CharacterSheetFragment()
+
+    private val mainMenuFragment = MainMenuFragment()
+
+    private var currentFragment: Fragment = mainMenuFragment
+
+    init {
+        mainMenuFragment.mainMenuViewModel = MainMenuViewModel(this)
+    }
 
     fun goToCharacterList() {
-        currentFragment?.let { backstack.add(it) }
+        currentFragment.let { backstack.add(it) }
 
-        val fragment = MainMenuFragment.newInstance(context, MainMenuViewModel(this))
         fragmentManager.beginTransaction().apply {
-            replace(R.id.fragment_host, fragment)
+            replace(R.id.fragment_host, mainMenuFragment)
             commit()
         }
 
-        currentFragment = fragment
+        currentFragment = mainMenuFragment
     }
 
     fun goToCharacterSheet(sheet: Sheet) {
-        currentFragment?.let { backstack.add(it) }
+        currentFragment.let { backstack.add(it) }
 
-        val fragment = CharacterSheetFragment.newInstance(sheet)
+        characterSheetFragment.character = sheet
         fragmentManager.beginTransaction().apply {
-            replace(R.id.fragment_host, fragment)
+            replace(R.id.fragment_host, characterSheetFragment)
             commit()
         }
 
-        currentFragment = fragment
+        currentFragment = characterSheetFragment
     }
 
     fun goBack() {
@@ -49,6 +54,4 @@ class FragmentManager(
             currentFragment = it
         }
     }
-
-
 }

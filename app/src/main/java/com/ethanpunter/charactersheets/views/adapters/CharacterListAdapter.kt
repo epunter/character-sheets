@@ -64,7 +64,6 @@ class CharacterListAdapter(private val mainMenuViewModel: MainMenuViewModel, con
             fun from(parent: ViewGroup, mainMenuViewModel: MainMenuViewModel): CharacterViewHolder {
                 val layoutInflater = LayoutInflater.from(parent.context)
                 val binding = CharacterSheetListItemBinding.inflate(layoutInflater, parent, false)
-
                 return CharacterViewHolder(binding, mainMenuViewModel)
             }
         }

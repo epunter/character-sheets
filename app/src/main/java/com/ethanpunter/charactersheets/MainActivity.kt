@@ -16,7 +16,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         fragmentManager =
-            FragmentManager(supportFragmentManager, applicationContext)
+            FragmentManager(supportFragmentManager)
         supportRequestWindowFeature(Window.FEATURE_NO_TITLE)
 
         val inflater: LayoutInflater =

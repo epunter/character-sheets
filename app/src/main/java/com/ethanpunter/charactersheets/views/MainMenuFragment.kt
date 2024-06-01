@@ -13,27 +13,17 @@ import com.ethanpunter.charactersheets.views.adapters.CharacterListAdapter
 
 class MainMenuFragment : Fragment() {
 
-    private lateinit var context: Context
-    private lateinit var mainMenuViewModel: MainMenuViewModel
+    lateinit var mainMenuViewModel: MainMenuViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
+        val context = context?.applicationContext
         val binding = MainMenuBinding.inflate(inflater)
         binding.charSheetList.layoutManager = LinearLayoutManager(context)
-        binding.charSheetList.adapter = CharacterListAdapter(mainMenuViewModel, context)
+        binding.charSheetList.adapter = context?.let { CharacterListAdapter(mainMenuViewModel, it) }
         return binding.root
     }
-
-    companion object {
-        fun newInstance(context: Context, mainMenuViewModel: MainMenuViewModel): MainMenuFragment {
-            val instance = MainMenuFragment()
-            instance.context = context
-            instance.mainMenuViewModel = mainMenuViewModel
-            return instance
-        }
-    }
-
 }
