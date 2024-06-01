@@ -1,13 +1,28 @@
 package com.ethanpunter.charactersheets.data
 
-import com.ethanpunter.charactersheets.stats.BasicStat
+import android.view.LayoutInflater
+import android.view.View
+import com.ethanpunter.charactersheets.stats.AbilityScore
+import com.ethanpunter.charactersheets.stats.BasicText
 
 data class Character(
     val name: String,
     val type: String,
     val level: Int,
-    val basicStats: List<BasicStat>
+    val race: String,
+    val background: String,
+    val abilityScores: List<AbilityScore>
 ) {
+
+    fun getAllAttributes(inflater: LayoutInflater): List<View> {
+        return listOf(
+            BasicText(0, "Character Name", name),
+            BasicText(1, "Class", type),
+            BasicText(2, "Level", level.toString()),
+            BasicText(3, "Race", race),
+            BasicText(4, "Background", background)
+        ).map { it.getView(inflater) }
+    }
 //    fun getSavingThrows()
 //
 //    fun getSkillProficiencies()
@@ -18,9 +33,6 @@ data class Character(
 //
 //    fun getCurrentHp(): Int
 //
-//    fun getBackground(): String
-//
-//    fun getRace(): String
 //
 //    fun getArmourClass(): Int
 //

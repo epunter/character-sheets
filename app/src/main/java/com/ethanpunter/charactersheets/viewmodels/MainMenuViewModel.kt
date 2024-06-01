@@ -20,38 +20,41 @@ class MainMenuViewModel(private val fragmentManager: FragmentManager) : BaseObse
     init {
         addCharacter(
             Character(
-                "Anastasia", "Cleric", 18,
+                "Anastasia", "Cleric", 18, "Human", "Acolyte",
                 listOf(
                     AbilityScore(0, "Strength", 20, true),
                     AbilityScore(1, "Dexterity", 12, true),
-                    AbilityScore(2, "Constitution", 10, true)
+                    AbilityScore(2, "Constitution", 10, true),
+                    AbilityScore(0, "Intelligence", 20, true),
+                    AbilityScore(1, "Wisdom", 12, true),
+                    AbilityScore(2, "Charisma", 10, true)
                 )
             )
         )
-        addCharacter(
-            Character(
-                "Jahangir",
-                "Fighter",
-                5,
-                listOf(AbilityScore(0, "Dexterity", 23, true))
-            )
-        )
-        addCharacter(
-            Character(
-                "Texilli",
-                "Druid",
-                100,
-                listOf(AbilityScore(0, "Constitution", 3, true))
-            )
-        )
-        addCharacter(
-            Character(
-                "Eagle",
-                "Barbarian",
-                20,
-                listOf(AbilityScore(0, "Charisma", 20, false))
-            )
-        )
+//        addCharacter(
+//            Character(
+//                "Jahangir",
+//                "Fighter",
+//                5,
+//                listOf(AbilityScore(0, "Dexterity", 23, true))
+//            )
+//        )
+//        addCharacter(
+//            Character(
+//                "Texilli",
+//                "Druid",
+//                100,
+//                listOf(AbilityScore(0, "Constitution", 3, true))
+//            )
+//        )
+//        addCharacter(
+//            Character(
+//                "Eagle",
+//                "Barbarian",
+//                20,
+//                listOf(AbilityScore(0, "Charisma", 20, false))
+//            )
+//        )
     }
 
     fun openCharacter(character: Character) {
