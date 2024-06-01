@@ -36,6 +36,7 @@ class FragmentManager(
         currentFragment.let { backstack.add(it) }
 
         characterSheetFragment.character = character
+        characterSheetFragment
         fragmentManager.beginTransaction().apply {
             replace(R.id.fragment_host, characterSheetFragment)
             commit()

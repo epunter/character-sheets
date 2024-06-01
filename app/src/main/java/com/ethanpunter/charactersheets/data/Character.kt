@@ -1,13 +1,13 @@
 package com.ethanpunter.charactersheets.data
 
+import com.ethanpunter.charactersheets.stats.BasicStat
+
 data class Character(
     val name: String,
     val type: String,
-    val level: Int
+    val level: Int,
+    val basicStats: List<BasicStat>
 ) {
-//
-//    fun getPrimaryStats() : List<PrimaryStat>
-//
 //    fun getSavingThrows()
 //
 //    fun getSkillProficiencies()

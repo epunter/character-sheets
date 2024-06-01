@@ -19,6 +19,7 @@ class CharacterSheetFragment : Fragment() {
     ): View {
         val binding = CharacterSheetBinding.inflate(inflater)
         binding.character = character
+        character.basicStats.forEach { binding.characterSheetContainer.addView(it.getView(inflater)) }
         return binding.root
     }
 }
