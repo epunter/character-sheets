@@ -40,10 +40,4 @@ abstract class BasicStat(
         this.statValue = statValue
         this.statAdditional = statAdditionalValue
     }
-
-    override fun getView(inflater: LayoutInflater): View {
-        val binding = AbilityScoreBinding.inflate(inflater)
-        binding.stat = this
-        return binding.root
-    }
 }

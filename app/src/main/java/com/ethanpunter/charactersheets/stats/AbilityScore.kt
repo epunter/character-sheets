@@ -2,6 +2,9 @@ package com.ethanpunter.charactersheets.stats
 
 import android.graphics.Point
 import android.util.Log
+import android.view.LayoutInflater
+import android.view.View
+import com.ethanpunter.charactersheets.databinding.AbilityScoreBinding
 
 class AbilityScore(
     override val position: Point,
@@ -33,5 +36,11 @@ class AbilityScore(
         }
         bonusString += bonus.toString()
         return bonusString
+    }
+
+    override fun getView(inflater: LayoutInflater): View {
+        val binding = AbilityScoreBinding.inflate(inflater)
+        binding.stat = this
+        return binding.root
     }
 }

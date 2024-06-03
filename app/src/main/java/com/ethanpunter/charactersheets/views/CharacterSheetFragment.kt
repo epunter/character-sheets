@@ -13,6 +13,7 @@ import com.ethanpunter.charactersheets.R
 import com.ethanpunter.charactersheets.data.Character
 import com.ethanpunter.charactersheets.databinding.CharacterSheetBinding
 import com.ethanpunter.charactersheets.stats.BasicText
+import com.ethanpunter.charactersheets.stats.Stat
 import kotlin.math.ceil
 
 class CharacterSheetFragment : Fragment() {
@@ -33,23 +34,7 @@ class CharacterSheetFragment : Fragment() {
             attributesList = attributesList.subList(1, attributesList.size)
         }
 
-        var curRow = attributesList[0].position.y
-        val curRowViews = ArrayList<View>()
-        for (i in attributesList.indices) {
-            val curAttribute = attributesList[i]
-            if (curAttribute.position.y != curRow) {
-                insertRow(
-                    curRowViews, binding, height = curAttribute.customHeight
-                        ?: (Resources.getSystem().displayMetrics.widthPixels / curRowViews.size)
-                )
-                curRowViews.clear()
-                curRowViews.add(curAttribute.getView(inflater))
-                curRow = curAttribute.position.y
-            } else {
-                curRowViews.add(curAttribute.getView(inflater))
-            }
-        }
-        insertRow(curRowViews, binding)
+        insertAttributes(attributesList, binding, inflater)
 
         return binding.root
     }
@@ -70,7 +55,30 @@ class CharacterSheetFragment : Fragment() {
         headerView.typeface = resources.getFont(R.font.draconis)
 
         binding.characterSheetContainer.addView(header)
+    }
 
+    private fun insertAttributes(
+        attributesList: List<Stat>,
+        binding: CharacterSheetBinding,
+        inflater: LayoutInflater
+    ) {
+        var curRow = attributesList[0].position.y
+        val curRowViews = ArrayList<View>()
+        for (i in attributesList.indices) {
+            val curAttribute = attributesList[i]
+            if (curAttribute.position.y != curRow) {
+                insertRow(
+                    curRowViews, binding, height = curAttribute.customHeight
+                        ?: (Resources.getSystem().displayMetrics.widthPixels / curRowViews.size)
+                )
+                curRowViews.clear()
+                curRowViews.add(curAttribute.getView(inflater))
+                curRow = curAttribute.position.y
+            } else {
+                curRowViews.add(curAttribute.getView(inflater))
+            }
+        }
+        insertRow(curRowViews, binding)
     }
 
     private fun insertRow(
