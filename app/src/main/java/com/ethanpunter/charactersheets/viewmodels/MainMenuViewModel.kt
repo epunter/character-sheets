@@ -7,9 +7,9 @@ import com.ethanpunter.charactersheets.data.Character
 import com.ethanpunter.charactersheets.BR
 import com.ethanpunter.charactersheets.R
 import com.ethanpunter.charactersheets.stats.AbilityScore
-import com.ethanpunter.charactersheets.stats.BasicStat
-import com.ethanpunter.charactersheets.stats.BasicText
+import com.ethanpunter.charactersheets.stats.TextLine
 import com.ethanpunter.charactersheets.stats.DecoratedStat
+import com.ethanpunter.charactersheets.stats.TextBlock
 import com.ethanpunter.charactersheets.views.FragmentManager
 
 class MainMenuViewModel(private val fragmentManager: FragmentManager) : BaseObservable() {
@@ -24,46 +24,24 @@ class MainMenuViewModel(private val fragmentManager: FragmentManager) : BaseObse
     init {
         addCharacter(
             Character(
-                BasicText(Point(0, 0), "Character Name", "Anastasia"),
-                BasicText(Point(0, 1), "Class", "Cleric"),
-                BasicText(Point(1, 1), "Level", "18"),
-                BasicText(Point(0, 2), "Race", "Human"),
-                BasicText(Point(1, 2), "Background", "Acolyte"),
-                DecoratedStat(Point(0, 3), "Armour Class", "20", R.drawable.shield),
-                DecoratedStat(Point(0, 3), "Health", "200", R.drawable.heart),
-//                DecoratedStat(Point(0, 3), "Speed", "30ft", R.drawable.boot),
-                AbilityScore(Point(0, 4), "Strength", "20", true),
+                TextLine(Point(0, 0), "Character Name", "Anastasia"),
+                TextLine(Point(0, 1), "Class", "Cleric"),
+                TextLine(Point(1, 1), "Level", "18"),
+                TextLine(Point(0, 2), "Race", "Human"),
+                TextLine(Point(1, 2), "Background", "Acolyte"),
+                DecoratedStat(Point(0, 3), "Armour Class", "21", R.drawable.shield),
+                DecoratedStat(Point(0, 3), "Health", "126", R.drawable.heart),
+                AbilityScore(Point(0, 4), "Strength", "16", true),
                 AbilityScore(Point(1, 4), "Dexterity", "12", true),
-                AbilityScore(Point(2, 4), "Constitution", "10", true),
-                AbilityScore(Point(0, 5), "Intelligence", "20", false),
-                AbilityScore(Point(1, 5), "Wisdom", "12", true),
-                AbilityScore(Point(2, 5), "Charisma", "10", true)
+                AbilityScore(Point(2, 4), "Constitution", "12", true),
+                AbilityScore(Point(0, 5), "Intelligence", "11", true),
+                AbilityScore(Point(1, 5), "Wisdom", "19", true),
+                AbilityScore(Point(2, 5), "Charisma", "14", true),
+                TextBlock(Point(0, 6), "Saving Throws", "Strength\nDexterity\nConstitution\nIntelligence\nWisdom\nCharisma"),
+                TextBlock(Point(1, 6), "Skills", "Acrobatics\nAnimal Handling\nArcana\nAthletics\nDeception\nHistory\nInsight\nIntimidation\nInvestigation\nMedicine\nNature\nPerception\nPerformance\nPersuasion\nReligion\nSleight of Hand\nStealth\nSurvival"),
+                TextBlock(Point(0,7), "Equipment", "")
             )
         )
-//        addCharacter(
-//            Character(
-//                "Jahangir",
-//                "Fighter",
-//                5,
-//                listOf(AbilityScore(0, "Dexterity", 23, true))
-//            )
-//        )
-//        addCharacter(
-//            Character(
-//                "Texilli",
-//                "Druid",
-//                100,
-//                listOf(AbilityScore(0, "Constitution", 3, true))
-//            )
-//        )
-//        addCharacter(
-//            Character(
-//                "Eagle",
-//                "Barbarian",
-//                20,
-//                listOf(AbilityScore(0, "Charisma", 20, false))
-//            )
-//        )
     }
 
     fun openCharacter(character: Character) {

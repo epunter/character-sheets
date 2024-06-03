@@ -9,7 +9,7 @@
 
         <variable
             name="stat"
-            type="com.ethanpunter.charactersheets.stats.BasicText" />
+            type="com.ethanpunter.charactersheets.stats.TextLine" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

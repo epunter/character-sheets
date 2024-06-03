@@ -8,13 +8,15 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
 import android.widget.TextView
+import androidx.core.view.marginLeft
+import androidx.core.view.setMargins
+import androidx.core.view.setPadding
 import androidx.fragment.app.Fragment
 import com.ethanpunter.charactersheets.R
 import com.ethanpunter.charactersheets.data.Character
 import com.ethanpunter.charactersheets.databinding.CharacterSheetBinding
-import com.ethanpunter.charactersheets.stats.BasicText
+import com.ethanpunter.charactersheets.stats.TextLine
 import com.ethanpunter.charactersheets.stats.Stat
-import kotlin.math.ceil
 
 class CharacterSheetFragment : Fragment() {
 
@@ -29,7 +31,7 @@ class CharacterSheetFragment : Fragment() {
 
         var attributesList = character.getAllAttributes()
 
-        if (attributesList[0] is BasicText) {
+        if (attributesList[0] is TextLine) {
             attachHeader(attributesList[0].getView(inflater), binding)
             attributesList = attributesList.subList(1, attributesList.size)
         }
@@ -78,19 +80,29 @@ class CharacterSheetFragment : Fragment() {
                 curRowViews.add(curAttribute.getView(inflater))
             }
         }
-        insertRow(curRowViews, binding)
+        insertRow(
+            curRowViews,
+            binding,
+            height = attributesList[attributesList.lastIndex].customHeight
+                ?: (Resources.getSystem().displayMetrics.widthPixels / curRowViews.size)
+        )
     }
 
     private fun insertRow(
         views: List<View>,
         binding: CharacterSheetBinding,
         width: Int = Resources.getSystem().displayMetrics.widthPixels / views.size,
-        height: Int = Resources.getSystem().displayMetrics.widthPixels / views.size
+        height: Int
     ) {
         val params = LinearLayout.LayoutParams(width, height)
         val rowView = LinearLayout(context)
         rowView.orientation = LinearLayout.HORIZONTAL
-        rowView.gravity = Gravity.CENTER
+        rowView.gravity = Gravity.CENTER or Gravity.TOP
+        rowView.layoutParams = LinearLayout.LayoutParams(
+            LinearLayout.LayoutParams.MATCH_PARENT,
+            LinearLayout.LayoutParams.WRAP_CONTENT
+        )
+
         for (view in views) {
             view.layoutParams = params
             rowView.addView(view)

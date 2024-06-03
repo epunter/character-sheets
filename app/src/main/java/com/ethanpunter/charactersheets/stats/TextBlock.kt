@@ -6,9 +6,9 @@ import android.view.View
 import android.widget.LinearLayout
 import androidx.databinding.Bindable
 import com.ethanpunter.charactersheets.BR
-import com.ethanpunter.charactersheets.databinding.LabelledTextBinding
+import com.ethanpunter.charactersheets.databinding.TextBlockBinding
 
-class BasicText(override val position: Point, label: String, value: String) : Stat() {
+class TextBlock(override val position: Point, label: String, value: String) : Stat() {
 
     override val customHeight = LinearLayout.LayoutParams.WRAP_CONTENT
 
@@ -32,7 +32,7 @@ class BasicText(override val position: Point, label: String, value: String) : St
     }
 
     override fun getView(inflater: LayoutInflater): View {
-        val binding = LabelledTextBinding.inflate(inflater)
+        val binding = TextBlockBinding.inflate(inflater)
         binding.stat = this
         return binding.root
     }
