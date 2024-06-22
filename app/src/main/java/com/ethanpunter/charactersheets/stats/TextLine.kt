@@ -13,7 +13,13 @@ import androidx.databinding.Bindable
 import com.ethanpunter.charactersheets.BR
 import com.ethanpunter.charactersheets.databinding.LabelledTextBinding
 
-class TextLine(override val position: Point, override val editable: Boolean = true, label: String, value: String) : Stat() {
+class TextLine(
+    override var id: Long = 0L,
+    override val position: Point,
+    override val editable: Boolean = true,
+    label: String,
+    value: String
+) : Stat() {
 
     override val customHeight = LinearLayout.LayoutParams.WRAP_CONTENT
 

@@ -8,6 +8,7 @@ import com.ethanpunter.charactersheets.BR
 import com.ethanpunter.charactersheets.databinding.AbilityScoreBinding
 
 abstract class BasicStat(
+    override var id: Long = 0L,
     override val position: Point,
     override val editable: Boolean = true,
     statName: String,

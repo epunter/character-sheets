@@ -16,12 +16,13 @@ import com.ethanpunter.charactersheets.databinding.AbilityScoreBinding
 
 
 class AbilityScore(
+    override var id: Long = 0L,
     override val position: Point,
     override val editable: Boolean = true,
     statName: String,
     statVal: String,
-    private val useModifier: Boolean = true
-) : BasicStat(position, editable, statName, statVal, null) {
+    val useModifier: Boolean = true
+) : BasicStat(id, position, editable, statName, statVal, null) {
 
     private val tag = AbilityScore::class.java.simpleName
 

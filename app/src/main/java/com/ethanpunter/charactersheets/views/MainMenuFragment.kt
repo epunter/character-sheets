@@ -6,10 +6,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.ethanpunter.charactersheets.databinding.MainMenuBinding
 import com.ethanpunter.charactersheets.viewmodels.MainMenuViewModel
 import com.ethanpunter.charactersheets.views.adapters.CharacterListAdapter
+import kotlinx.coroutines.launch
 
 class MainMenuFragment : Fragment() {
 
@@ -22,6 +24,7 @@ class MainMenuFragment : Fragment() {
     ): View {
         val context = context?.applicationContext
         val binding = MainMenuBinding.inflate(inflater)
+        binding.btnAddCharSheet.setOnClickListener { lifecycleScope.launch { mainMenuViewModel.addCharacter() } }
         binding.charSheetList.layoutManager = LinearLayoutManager(context)
         binding.charSheetList.adapter = context?.let { CharacterListAdapter(mainMenuViewModel, it) }
         return binding.root

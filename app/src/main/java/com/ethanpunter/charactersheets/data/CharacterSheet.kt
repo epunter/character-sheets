@@ -3,7 +3,8 @@ package com.ethanpunter.charactersheets.data
 import com.ethanpunter.charactersheets.stats.TextLine
 import com.ethanpunter.charactersheets.stats.Stat
 
-class Character(
+class CharacterSheet(
+    val id: Long = 0L,
     val name: TextLine,
     val profession: TextLine,
     val level: TextLine,
@@ -13,14 +14,4 @@ class Character(
         val baseStats = listOf(name, profession, level)
         return (baseStats + stats).sortedWith(compareBy({ it.position.y }, { it.position.x }))
     }
-//
-//    fun getMaxHp(): Int
-//
-//    fun getCurrentHp(): Int
-//
-//    fun getInitiative(): Int
-//
-//    fun getSpeed(): Int
-//
-//    fun getDeathSaves(): Pair<Int, Int>
 }

@@ -13,13 +13,13 @@ import androidx.appcompat.content.res.AppCompatResources
 import com.ethanpunter.charactersheets.databinding.DecoratedStatBinding
 
 class DecoratedStat(
-    position: Point,
+    override var id: Long = 0L,
+    override val position: Point,
     override val editable: Boolean = true,
     name: String,
     value: String,
-    private val decoration: Int
-) :
-    BasicStat(position, editable, name, value, null) {
+    val decoration: Int
+) : BasicStat(id, position, editable, name, value, null) {
 
     override val customHeight: Int = LinearLayout.LayoutParams.WRAP_CONTENT
 

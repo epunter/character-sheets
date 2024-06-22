@@ -8,19 +8,16 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
 import android.widget.TextView
-import androidx.core.view.marginLeft
-import androidx.core.view.setMargins
-import androidx.core.view.setPadding
 import androidx.fragment.app.Fragment
 import com.ethanpunter.charactersheets.R
-import com.ethanpunter.charactersheets.data.Character
+import com.ethanpunter.charactersheets.data.CharacterSheet
 import com.ethanpunter.charactersheets.databinding.CharacterSheetBinding
 import com.ethanpunter.charactersheets.stats.TextLine
 import com.ethanpunter.charactersheets.stats.Stat
 
 class CharacterSheetFragment : Fragment() {
 
-    lateinit var character: Character
+    lateinit var characterSheet: CharacterSheet
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -29,7 +26,7 @@ class CharacterSheetFragment : Fragment() {
     ): View {
         val binding = CharacterSheetBinding.inflate(inflater)
 
-        val attributesList = character.getAllAttributes()
+        val attributesList = characterSheet.getAllAttributes()
 
         // If the first attribute is a TextLine only (as will usually be Character Name or similar)
         // Use that as a header, enlarging the size and spanning the whole screen

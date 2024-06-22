@@ -10,6 +10,8 @@ abstract class Stat : BaseObservable() {
 
     open val customHeight: Int? = null
 
+    open val id: Long = 0L
+
     abstract val position: Point
 
     abstract val editable: Boolean

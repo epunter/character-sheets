@@ -2,11 +2,13 @@ package com.ethanpunter.charactersheets.views
 
 import androidx.fragment.app.Fragment
 import com.ethanpunter.charactersheets.R
-import com.ethanpunter.charactersheets.data.Character
+import com.ethanpunter.charactersheets.data.CharacterSheet
+import com.ethanpunter.charactersheets.database.Repository
 import com.ethanpunter.charactersheets.viewmodels.MainMenuViewModel
 
 class FragmentManager(
-    private val fragmentManager: androidx.fragment.app.FragmentManager
+    private val fragmentManager: androidx.fragment.app.FragmentManager,
+    repository: Repository
 ) {
 
     private val backstack: ArrayDeque<Fragment> = ArrayDeque()
@@ -18,7 +20,7 @@ class FragmentManager(
     private var currentFragment: Fragment = mainMenuFragment
 
     init {
-        mainMenuFragment.mainMenuViewModel = MainMenuViewModel(this)
+        mainMenuFragment.mainMenuViewModel = MainMenuViewModel(this, repository)
     }
 
     fun goToCharacterList() {
@@ -32,10 +34,10 @@ class FragmentManager(
         currentFragment = mainMenuFragment
     }
 
-    fun goToCharacterSheet(character: Character) {
+    fun goToCharacterSheet(characterSheet: CharacterSheet) {
         currentFragment.let { backstack.add(it) }
 
-        characterSheetFragment.character = character
+        characterSheetFragment.characterSheet = characterSheet
         characterSheetFragment
         fragmentManager.beginTransaction().apply {
             replace(R.id.fragment_host, characterSheetFragment)
