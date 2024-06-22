@@ -9,6 +9,7 @@ import com.ethanpunter.charactersheets.databinding.AbilityScoreBinding
 
 abstract class BasicStat(
     override val position: Point,
+    override val editable: Boolean = true,
     statName: String,
     statValue: String,
     statAdditionalValue: String?

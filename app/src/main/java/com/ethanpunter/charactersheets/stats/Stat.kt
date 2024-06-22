@@ -1,5 +1,6 @@
 package com.ethanpunter.charactersheets.stats
 
+import android.content.Context
 import android.graphics.Point
 import android.view.LayoutInflater
 import android.view.View
@@ -11,6 +12,10 @@ abstract class Stat : BaseObservable() {
 
     abstract val position: Point
 
+    abstract val editable: Boolean
+
     abstract fun getView(inflater: LayoutInflater): View
+
+    abstract fun edit(context: Context)
 
 }

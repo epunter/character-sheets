@@ -24,22 +24,32 @@ class MainMenuViewModel(private val fragmentManager: FragmentManager) : BaseObse
     init {
         addCharacter(
             Character(
-                TextLine(Point(0, 0), "Character Name", "Anastasia"),
-                TextLine(Point(0, 1), "Class", "Cleric"),
-                TextLine(Point(1, 1), "Level", "18"),
-                TextLine(Point(0, 2), "Race", "Human"),
-                TextLine(Point(1, 2), "Background", "Acolyte"),
-                DecoratedStat(Point(0, 3), "Armour Class", "21", R.drawable.shield),
-                DecoratedStat(Point(0, 3), "Health", "126", R.drawable.heart),
-                AbilityScore(Point(0, 4), "Strength", "16", true),
-                AbilityScore(Point(1, 4), "Dexterity", "12", true),
-                AbilityScore(Point(2, 4), "Constitution", "12", true),
-                AbilityScore(Point(0, 5), "Intelligence", "11", true),
-                AbilityScore(Point(1, 5), "Wisdom", "19", true),
-                AbilityScore(Point(2, 5), "Charisma", "14", true),
-                TextBlock(Point(0, 6), "Saving Throws", "Strength\nDexterity\nConstitution\nIntelligence\nWisdom\nCharisma"),
-                TextBlock(Point(1, 6), "Skills", "Acrobatics\nAnimal Handling\nArcana\nAthletics\nDeception\nHistory\nInsight\nIntimidation\nInvestigation\nMedicine\nNature\nPerception\nPerformance\nPersuasion\nReligion\nSleight of Hand\nStealth\nSurvival"),
-                TextBlock(Point(0,7), "Equipment", "")
+                TextLine(Point(0, 0), true, "Character Name", "Anastasia"),
+                TextLine(Point(0, 1), true, "Class", "Cleric"),
+                TextLine(Point(1, 1), true, "Level", "18"),
+                TextLine(Point(0, 2), true, "Race", "Human"),
+                TextLine(Point(1, 2), true, "Background", "Acolyte"),
+                DecoratedStat(Point(0, 3), true, "Armour Class", "21", R.drawable.shield),
+                DecoratedStat(Point(0, 3), true, "Health", "126", R.drawable.heart),
+                AbilityScore(Point(0, 4), true, "Strength", "16", true),
+                AbilityScore(Point(1, 4), true, "Dexterity", "12", true),
+                AbilityScore(Point(2, 4), true, "Constitution", "12", true),
+                AbilityScore(Point(0, 5), true, "Intelligence", "11", true),
+                AbilityScore(Point(1, 5), true, "Wisdom", "19", true),
+                AbilityScore(Point(2, 5), true, "Charisma", "14", true),
+                TextBlock(
+                    Point(0, 6),
+                    true,
+                    "Saving Throws",
+                    "Strength\nDexterity\nConstitution\nIntelligence\nWisdom\nCharisma"
+                ),
+                TextBlock(
+                    Point(1, 6),
+                    true,
+                    "Skills",
+                    "Acrobatics\nAnimal Handling\nArcana\nAthletics\nDeception\nHistory\nInsight\nIntimidation\nInvestigation\nMedicine\nNature\nPerception\nPerformance\nPersuasion\nReligion\nSleight of Hand\nStealth\nSurvival"
+                ),
+                TextBlock(Point(0, 7), true, "Equipment", "")
             )
         )
     }

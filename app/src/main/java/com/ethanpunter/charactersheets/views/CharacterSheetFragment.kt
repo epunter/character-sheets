@@ -29,14 +29,18 @@ class CharacterSheetFragment : Fragment() {
     ): View {
         val binding = CharacterSheetBinding.inflate(inflater)
 
-        var attributesList = character.getAllAttributes()
+        val attributesList = character.getAllAttributes()
 
+        // If the first attribute is a TextLine only (as will usually be Character Name or similar)
+        // Use that as a header, enlarging the size and spanning the whole screen
         if (attributesList[0] is TextLine) {
-            attachHeader(attributesList[0].getView(inflater), binding)
-            attributesList = attributesList.subList(1, attributesList.size)
+            val headerView = attributesList[0].getView(inflater)
+            headerView.setOnClickListener { attributesList[0].edit(headerView.context) }
+            attachHeader(headerView, binding)
+            insertAttributes(attributesList.subList(1, attributesList.size), binding, inflater)
+        } else {
+            insertAttributes(attributesList, binding, inflater)
         }
-
-        insertAttributes(attributesList, binding, inflater)
 
         return binding.root
     }
@@ -68,16 +72,18 @@ class CharacterSheetFragment : Fragment() {
         val curRowViews = ArrayList<View>()
         for (i in attributesList.indices) {
             val curAttribute = attributesList[i]
+            val curAttributeView = curAttribute.getView(inflater)
+            curAttributeView.setOnClickListener { curAttribute.edit(curAttributeView.context) }
             if (curAttribute.position.y != curRow) {
                 insertRow(
                     curRowViews, binding, height = curAttribute.customHeight
                         ?: (Resources.getSystem().displayMetrics.widthPixels / curRowViews.size)
                 )
                 curRowViews.clear()
-                curRowViews.add(curAttribute.getView(inflater))
+                curRowViews.add(curAttributeView)
                 curRow = curAttribute.position.y
             } else {
-                curRowViews.add(curAttribute.getView(inflater))
+                curRowViews.add(curAttributeView)
             }
         }
         insertRow(
@@ -107,6 +113,7 @@ class CharacterSheetFragment : Fragment() {
             view.layoutParams = params
             rowView.addView(view)
         }
+
         binding.characterSheetContainer.addView(rowView)
     }
 }
