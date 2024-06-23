@@ -60,7 +60,10 @@ class TextLine(
 
             builder.setPositiveButton(
                 "OK"
-            ) { _, _ -> textValue = input.text.toString() }
+            ) { _, _ -> textValue =
+                input.text.toString()
+                notifyListeners()
+            }
             builder.setNegativeButton(
                 "Cancel"
             ) { dialog, _ -> dialog.cancel() }

@@ -79,7 +79,10 @@ class AbilityScore(
 
             builder.setPositiveButton(
                 "OK"
-            ) { _, _ -> statValue = input.text.toString() }
+            ) { _, _ ->
+                statValue = input.text.toString()
+                notifyListeners()
+            }
             builder.setNegativeButton(
                 "Cancel"
             ) { dialog, _ -> dialog.cancel() }

@@ -10,14 +10,14 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import com.ethanpunter.charactersheets.R
-import com.ethanpunter.charactersheets.data.CharacterSheet
 import com.ethanpunter.charactersheets.databinding.CharacterSheetBinding
 import com.ethanpunter.charactersheets.stats.TextLine
 import com.ethanpunter.charactersheets.stats.Stat
+import com.ethanpunter.charactersheets.viewmodels.CharacterSheetViewModel
 
 class CharacterSheetFragment : Fragment() {
 
-    lateinit var characterSheet: CharacterSheet
+    lateinit var characterSheetViewModel: CharacterSheetViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -26,17 +26,19 @@ class CharacterSheetFragment : Fragment() {
     ): View {
         val binding = CharacterSheetBinding.inflate(inflater)
 
-        val attributesList = characterSheet.getAllAttributes()
+        val attributesList = characterSheetViewModel.getCurrentCharacterAttributes()
 
-        // If the first attribute is a TextLine only (as will usually be Character Name or similar)
-        // Use that as a header, enlarging the size and spanning the whole screen
-        if (attributesList[0] is TextLine) {
-            val headerView = attributesList[0].getView(inflater)
-            headerView.setOnClickListener { attributesList[0].edit(headerView.context) }
-            attachHeader(headerView, binding)
-            insertAttributes(attributesList.subList(1, attributesList.size), binding, inflater)
-        } else {
-            insertAttributes(attributesList, binding, inflater)
+        attributesList?.let {
+            // If the first attribute is a TextLine only (as will usually be Character Name or similar)
+            // Use that as a header, enlarging the size and spanning the whole screen
+            if (attributesList[0] is TextLine) {
+                val headerView = attributesList[0].getView(inflater)
+                headerView.setOnClickListener { attributesList[0].edit(headerView.context) }
+                attachHeader(headerView, binding)
+                insertAttributes(attributesList.subList(1, attributesList.size), binding, inflater)
+            } else {
+                insertAttributes(attributesList, binding, inflater)
+            }
         }
 
         return binding.root

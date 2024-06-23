@@ -4,6 +4,7 @@ import androidx.fragment.app.Fragment
 import com.ethanpunter.charactersheets.R
 import com.ethanpunter.charactersheets.data.CharacterSheet
 import com.ethanpunter.charactersheets.database.Repository
+import com.ethanpunter.charactersheets.viewmodels.CharacterSheetViewModel
 import com.ethanpunter.charactersheets.viewmodels.MainMenuViewModel
 
 class FragmentManager(
@@ -19,8 +20,11 @@ class FragmentManager(
 
     private var currentFragment: Fragment = mainMenuFragment
 
+    private val characterSheetViewModel = CharacterSheetViewModel(repository)
+
     init {
         mainMenuFragment.mainMenuViewModel = MainMenuViewModel(this, repository)
+        characterSheetFragment.characterSheetViewModel = characterSheetViewModel
     }
 
     fun goToCharacterList() {
@@ -37,8 +41,7 @@ class FragmentManager(
     fun goToCharacterSheet(characterSheet: CharacterSheet) {
         currentFragment.let { backstack.add(it) }
 
-        characterSheetFragment.characterSheet = characterSheet
-        characterSheetFragment
+        characterSheetViewModel.currentCharacter = characterSheet
         fragmentManager.beginTransaction().apply {
             replace(R.id.fragment_host, characterSheetFragment)
             commit()

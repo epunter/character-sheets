@@ -2,6 +2,7 @@ package com.ethanpunter.charactersheets.database
 
 import androidx.lifecycle.Transformations
 import com.ethanpunter.charactersheets.data.CharacterSheet
+import com.ethanpunter.charactersheets.stats.Stat
 
 class Repository(
     private val characterSheetDao: CharacterSheetDao,
@@ -35,6 +36,22 @@ class Repository(
     suspend fun deleteCharacter(characterSheet: CharacterSheet) {
         transactionProvider.runAsTransaction {
             characterSheetDao.delete(characterSheet.id)
+        }
+    }
+
+    suspend fun updateStat(stat: Stat, characterId: Long?) {
+        characterId?.let {
+            transactionProvider.runAsTransaction {
+                statsDao.update(statsDao.convert(stat, characterId))
+            }
+        }
+    }
+
+    suspend fun updateCharacter(characterSheet: CharacterSheet?) {
+        characterSheet?.let {
+            transactionProvider.runAsTransaction {
+                characterSheetDao.update(characterSheetDao.convert(characterSheet))
+            }
         }
     }
 }
