@@ -5,4 +5,5 @@
     <string name="character_sheets_desc">Add New Character Sheet</string>
     <string name="character_stats">- Level %s %s</string>
     <string name="dragon_decoration">Dragon Decoration</string>
+    <string name="delete_text_entry">Delete Text Entry</string>
 </resources>

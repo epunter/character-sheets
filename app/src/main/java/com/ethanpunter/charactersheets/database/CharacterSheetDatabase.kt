@@ -6,7 +6,7 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 
 private const val DB_NAME = "character-sheet-db"
-private const val DB_VERSION = 2
+private const val DB_VERSION = 1
 
 @Database(
     entities = [

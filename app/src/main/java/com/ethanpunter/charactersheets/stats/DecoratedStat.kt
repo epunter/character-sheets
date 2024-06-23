@@ -31,30 +31,4 @@ class DecoratedStat(
 
         return binding.root
     }
-
-    override fun edit(context: Context) {
-        if (editable) {
-            val builder = AlertDialog.Builder(context)
-            builder.setTitle("Edit Stat: $statName")
-
-            val input = EditText(context)
-            input.inputType = InputType.TYPE_CLASS_NUMBER
-            input.text = SpannableStringBuilder(statValue)
-            builder.setView(input)
-
-            builder.setPositiveButton(
-                "OK"
-            ) { _, _ ->
-                statValue = input.text.toString()
-                notifyListeners()
-            }
-            builder.setNegativeButton(
-                "Cancel"
-            ) { dialog, _ -> dialog.cancel() }
-
-            builder.show()
-        }
-    }
-
-
 }

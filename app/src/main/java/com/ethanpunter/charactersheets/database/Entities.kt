@@ -101,7 +101,7 @@ class DatabaseTextBlock(
     editable: Boolean,
     characterSheetId: Long,
     val statName: String,
-    var statValue: String,
+    var statValues: List<String>
 ) : DatabaseStat(id, position, editable, characterSheetId)
 
 @Entity(
@@ -113,6 +113,6 @@ class DatabaseTextLine(
     editable: Boolean,
     characterSheetId: Long,
     val statName: String,
-    var statValue: String,
+    var statValue: String
 ) : DatabaseStat(id, position, editable, characterSheetId)
 

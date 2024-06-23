@@ -124,7 +124,7 @@ interface StatsDao {
             stat.editable,
             characterSheetId,
             stat.textLabel,
-            stat.textValue
+            stat.textValues
         )
 
     fun convert(stat: DatabaseTextBlock): TextBlock =
@@ -133,7 +133,7 @@ interface StatsDao {
             stat.position,
             stat.editable,
             stat.statName,
-            stat.statValue
+            stat.statValues.toMutableList()
         )
 
     // TEXT LINE

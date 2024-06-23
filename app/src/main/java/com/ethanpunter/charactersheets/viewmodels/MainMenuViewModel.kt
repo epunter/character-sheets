@@ -57,17 +57,43 @@ class MainMenuViewModel(
             AbilityScore(0L, Point(2, 5), true, "Charisma", "10", true),
             TextBlock(
                 0L, Point(0, 6),
-                true,
+                false,
                 "Saving Throws",
-                "Strength\nDexterity\nConstitution\nIntelligence\nWisdom\nCharisma"
+                mutableListOf(
+                    "Strength",
+                    "Dexterity",
+                    "Constitution",
+                    "Intelligence",
+                    "Wisdom",
+                    "Charisma"
+                )
             ),
             TextBlock(
                 0L, Point(1, 6),
                 true,
                 "Skills",
-                "Acrobatics\nAnimal Handling\nArcana\nAthletics\nDeception\nHistory\nInsight\nIntimidation\nInvestigation\nMedicine\nNature\nPerception\nPerformance\nPersuasion\nReligion\nSleight of Hand\nStealth\nSurvival"
+                mutableListOf(
+                    "Acrobatics",
+                    "Animal Handling",
+                    "Arcana",
+                    "Athletics",
+                    "Deception",
+                    "History",
+                    "Insight",
+                    "Intimidation",
+                    "Investigation",
+                    "Medicine",
+                    "Nature",
+                    "Perception",
+                    "Performance",
+                    "Persuasion",
+                    "Religion",
+                    "Sleight of Hand",
+                    "Stealth",
+                    "Survival"
+                )
             ),
-            TextBlock(0L, Point(0, 7), true, "Equipment", "")
+            TextBlock(0L, Point(0, 7), true, "Equipment", mutableListOf())
         )
 
     override fun onChanged(characters: List<CharacterSheet>) {
