@@ -6,4 +6,5 @@
     <string name="character_stats">- Level %s %s</string>
     <string name="dragon_decoration">Dragon Decoration</string>
     <string name="delete_text_entry">Delete Text Entry</string>
+    <string name="press_to_add_a_new_character">Press + to add a new character</string>
 </resources>

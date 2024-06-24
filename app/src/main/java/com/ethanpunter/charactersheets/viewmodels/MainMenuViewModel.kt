@@ -70,7 +70,7 @@ class MainMenuViewModel(
             ),
             TextBlock(
                 0L, Point(1, 6),
-                true,
+                false,
                 "Skills",
                 mutableListOf(
                     "Acrobatics",

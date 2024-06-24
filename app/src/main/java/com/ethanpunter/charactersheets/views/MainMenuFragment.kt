@@ -24,6 +24,7 @@ class MainMenuFragment : Fragment() {
     ): View {
         val context = context?.applicationContext
         val binding = MainMenuBinding.inflate(inflater)
+        binding.vm = mainMenuViewModel
         binding.btnAddCharSheet.setOnClickListener { lifecycleScope.launch { mainMenuViewModel.addCharacter() } }
         binding.charSheetList.layoutManager = LinearLayoutManager(context)
         binding.charSheetList.adapter = context?.let { CharacterListAdapter(mainMenuViewModel, it) }
